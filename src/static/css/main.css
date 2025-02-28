@@ -1,0 +1,34 @@
+:root{
+	--bg-main: #000000;
+	--bg-secondary: #1c1c1c;
+	--bg-accent: #2c2c2c;
+	--text-main: #ffffff;
+	--text-secondary: #cccccc;
+	--text-accent: #0080ff;
+
+	--font-head: Georgia, 'Times New Roman', Times, serif;
+	--font-body: Arial, sans-serif;
+}
+
+body {
+	background-color: var(--bg-main);
+	color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-head);
+}
+
+body, p, a {
+	font-family: var(--font-body);
+}
+
+
+.section-secondary {
+	background-color: var(--bg-secondary);
+}
+
+.section-accent {
+	background-color: var(--bg-accent);
+}
+
