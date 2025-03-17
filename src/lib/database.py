@@ -1,9 +1,6 @@
 import sqlite3
 conn = sqlite3.connect("t818.db")
 c = conn.cursor()
-# if no db then create it
-
-
 
 def generate_databases():
 	c.execute("CREATE TABLE IF NOT EXISTS Users (ID INTEGER PRIMARY KEY, Username TEXT, Password TEXT, Role TEXT)")
@@ -25,10 +22,13 @@ def get_recent_posts():
 	return data
 
 def get_with_tags(tag):
-	# c.execute("SELECT * FROM Posts WHERE Tags LIKE ?", (tag,))
-	# not exact match e.g ?q=tag1,tag4 should work with post tag1,tag2,tag3,tag4
 	c.execute("SELECT * FROM Posts WHERE Tags LIKE ?", (f"%{tag}%",))
 	data = c.fetchall()
+	return data
+
+def get_post_by_fileid(fileid):
+	c.execute("SELECT * FROM Posts WHERE FileID=?", (fileid,))
+	data = c.fetchone()
 	return data
 
 if not c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='Users'").fetchone():
