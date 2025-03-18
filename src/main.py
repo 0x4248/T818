@@ -39,7 +39,6 @@ async def root():
 async def root(path):
     return FileResponse("src/static/" + path)
 
-
 @app.get("/posts")
 async def get_posts(q: str = None):
     if q == None:
@@ -78,7 +77,6 @@ async def get_post(ID: int):
     html += f"<p>Date: {post[5]}</p>"
     html += f"<img width=500px src='/image/{post[2]}'>"
     html += "</body></html>"
-
     return HTMLResponse(content=html)
 
 @app.post("/upload")
@@ -107,7 +105,6 @@ async def upload_post(User: str = Header(None), Tags: str = Header(None), Descri
 
 @app.get("/image/{FileID}")
 async def get_image(FileID: str):
-    # get the file extention
     post = database.get_post_by_fileid(FileID)
     if post == None:
         return JSONResponse(content={"status": "error", "message": "post not found"}, status_code=404)
